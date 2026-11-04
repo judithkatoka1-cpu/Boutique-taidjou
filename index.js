@@ -167,15 +167,12 @@ const htmlContent = `
                                     <span class="font-extrabold text-orange-600 text-base">\${finalPrice} $</span>
                                     \${p.discount > 0 ? \`<span class="text-xs text-slate-400 line-through">\${p.price} $</span>\` : ''}
                                 </div>
-                                <button onclick="addToCart(\${p.id})" class="w-full bg-orange-500 hover:bg-orange-600 text-white text-xs font-bold py-2 rounded-lg transition">
-                                    Ajouter au panier
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                \`;
-            }).join('');
-        }
+                                <button onclick="addToCart(${p.id})" class="w-full bg-orange-500 hover:bg-orange-600 text-white py-1.5 rounded-lg transition text-sm font-semibold mb-2">
+    Ajouter au panier
+</button>
+<button onclick="deleteProduct(${p.id})" class="w-full bg-red-600 text-white py-1.5 rounded-lg text-sm font-semibold hover:bg-red-700 transition">
+    Supprimer
+</button>
 
         function addToCart(id) {
             const prod = products.find(p => p.id === id);
