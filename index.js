@@ -255,21 +255,36 @@ const htmlContent = `
         }
 
         function handleAddProduct(e) {
-            e.preventDefault();
-            const newP = {
-                id: Date.now(),
-                name: document.getElementById('pName').value,
-                price: parseFloat(document.getElementById('pPrice').value),
-                discount: parseFloat(document.getElementById('pDiscount').value) || 0,
-                category: document.getElementById('pCategory').value,
-                img: document.getElementById('pImg').value || 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400'
-            };
-            products.push(newP);
-            localStorage.setItem('taidjou_products', JSON.stringify(products));
-            renderProducts();
-            alert('Produit ajouté !');
-            closeAdminModal();
-        }
+    e.preventDefault();
+    
+    const fileInput = document.getElementById('pImage');
+    const file = fileInput.files[0];
+    
+    if (!file) {
+        alert("Veuillez sélectionner une image pour le produit.");
+        return;
+    }
+    
+    const reader = new FileReader();
+    reader.onload = function(event) {
+        const newP = {
+            id: Date.now(),
+            name: document.getElementById('pName').value,
+            price: parseFloat(document.getElementById('pPrice').value),
+            discount: parseFloat(document.getElementById('pDiscount').value) || 0,
+            category: document.getElementById('pCategory').value,
+            img: event.target.result
+        };
+        
+        products.push(newP);
+        localStorage.setItem('taidjou_products', JSON.stringify(products));
+        renderProducts();
+        alert('Produit ajouté avec succès !');
+        closeAdminModal();
+    };
+    
+    reader.readAsDataURL(file);
+}
 
         function setCategory(cat) {
             selectedCategory = cat;
