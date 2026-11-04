@@ -116,8 +116,8 @@ const htmlContent = `
                         <option value="Électronique">Électronique</option>
                         <option value="Maison">Maison</option>
                     </select>
-                    <input type="url" id="pImg" placeholder="Lien de l'image (URL)" class="w-full p-2 text-sm border rounded">
-                    <button type="submit" class="w-full bg-slate-900 text-white py-2 rounded text-sm font-bold">Enregistrer le Produit</button>
+                    <input type="file" id="pImage" accept="image/*" class="w-full p-2 border rounded mb-3">
+<button type="submit" class="w-full bg-slate-900 text-white py-2 rounded text-center">Enregistrer le Produit</button>
                 </form>
             </div>
         </div>
